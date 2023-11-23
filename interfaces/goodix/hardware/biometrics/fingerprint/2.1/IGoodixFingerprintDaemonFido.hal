@@ -16,10 +16,13 @@
 
 package vendor.goodix.hardware.biometrics.fingerprint@2.1;
 
-import IGoodixFingerprintDaemonCallback;
+import IGoodixFingerprintDaemonFidoCallback;
 
-interface IGoodixFingerprintDaemon {
-    oneway initCallback(IGoodixFingerprintDaemonCallback callback);
-
-    testCmd(uint32_t cmdId, vec<uint8_t> param) generates (uint32_t ret);
+interface IGoodixFingerprintDaemonFido {
+    authenticateFido(uint32_t groupId, vec<uint8_t> aaid, vec<uint8_t> finalChallenge) generates (uint32_t ret);
+    getIdList(uint32_t groupId) generates (uint32_t i, vec<uint32_t> arrayList);
+    oneway initCallback(IGoodixFingerprintDaemonFidoCallback callback);
+    invokeFidoCommand(vec<uint8_t> in_buf) generates (uint32_t i, vec<uint8_t> arrayList);
+    isIdValid(uint32_t groupId, uint32_t fingerId) generates (uint32_t ret);
+    stopAuthenticateFido() generates (uint32_t ret);
 };

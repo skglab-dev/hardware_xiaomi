@@ -16,10 +16,11 @@
 
 package vendor.goodix.hardware.biometrics.fingerprint@2.1;
 
-import IGoodixFingerprintDaemonCallback;
+import IGoodixFingerprintDaemonHbdCallback;
 
-interface IGoodixFingerprintDaemon {
-    oneway initCallback(IGoodixFingerprintDaemonCallback callback);
-
-    testCmd(uint32_t cmdId, vec<uint8_t> param) generates (uint32_t ret);
+interface IGoodixFingerprintDaemonHbd {
+    enableBioAssayFeature(uint8_t enableFlag) generates (uint32_t ret);
+    oneway initCallback(IGoodixFingerprintDaemonHbdCallback callback);
+    startHbd() generates (uint32_t ret);
+    stopHbd() generates (uint32_t ret);
 };

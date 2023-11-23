@@ -7,9 +7,21 @@ hidl_interface {
     srcs: [
         "IGoodixFingerprintDaemon.hal",
         "IGoodixFingerprintDaemonCallback.hal",
+        "IGoodixFingerprintDaemonExt.hal",
+        "IGoodixFingerprintDaemonExtCallback.hal",
+        "IGoodixFingerprintDaemonFido.hal",
+        "IGoodixFingerprintDaemonFidoCallback.hal",
+        "IGoodixFingerprintDaemonHbd.hal",
+        "IGoodixFingerprintDaemonHbdCallback.hal",
     ],
     interfaces: [
         "android.hidl.base@1.0",
     ],
     gen_java: true,
+}
+
+cc_library_shared {
+    name: "libvendor.goodix.hardware.biometrics.fingerprint@2.1",
+    shared_libs: ["vendor.goodix.hardware.biometrics.fingerprint@2.1"],
+    vendor_available: true,
 }
